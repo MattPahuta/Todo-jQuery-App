@@ -22,7 +22,6 @@ $("ul").on("click", "li", function() {
 
 // Click on X to delete todo
 $("ul").on("click", "span", function(event) {
-  // this.partent to target the enclosing li of the clicked span
   $(this).parent().fadeOut(500, function() {
     $(this).remove();
   });
@@ -31,10 +30,12 @@ $("ul").on("click", "span", function(event) {
 
 $("input[type='text']").keypress(function(event) {
   if (event.which === 13){
-    // Get new todo text from input
-    var todoText = $(this).val();
+    var todoText = $(this).val(); // grab new todo text from input
     $(this).val("");
-    // create a new li and add to ul
-    $("ul").append("<li><span><i class='fas fa-trash-alt'></i></span> " + todoText + "</li>")
+    $("ul").append("<li><span><i class='fas fa-trash-alt'></i></span> " + todoText + "</li>") // create new li and add to ul
   }
+});
+
+$("#toggle-form").click(function() {
+  $("input[type='text']").fadeToggle();
 });
