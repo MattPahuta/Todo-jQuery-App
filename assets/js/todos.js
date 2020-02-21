@@ -16,15 +16,25 @@ console.log("Scripts connected!")
 // });
 
 // Single line, streamlined version of above logic
-$("li").click(function() {
+$("ul").on("click", "li", function() {
   $(this).toggleClass("completed");
 })
 
 // Click on X to delete todo
-$("span").click(function(event) {
+$("ul").on("click", "span", function(event) {
   // this.partent to target the enclosing li of the clicked span
   $(this).parent().fadeOut(500, function() {
     $(this).remove();
   });
   event.stopPropagation();
+});
+
+$("input[type='text']").keypress(function(event) {
+  if (event.which === 13){
+    // Get new todo text from input
+    var todoText = $(this).val();
+    $(this).val("");
+    // create a new li and add to ul
+    $("ul").append("<li><span>X</span> " + todoText + "</li>")
+  }
 });
