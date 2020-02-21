@@ -19,3 +19,12 @@ console.log("Scripts connected!")
 $("li").click(function() {
   $(this).toggleClass("completed");
 })
+
+// Click on X to delete todo
+$("span").click(function(event) {
+  // this.partent to target the enclosing li of the clicked span
+  $(this).parent().fadeOut(500, function() {
+    $(this).remove();
+  });
+  event.stopPropagation();
+});
